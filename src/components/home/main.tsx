@@ -1,13 +1,13 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 
-export default function Hero() {
+export default function Main() {
   return (
     <div className="relative overflow-hidden bg-white dark:bg-gray-900">
       <div className="container-wrapper">
         <div className="relative z-10 max-w-2xl py-24 sm:py-32">
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
-            Full-Stack Developer
+            Miles Herrman
             <span className="text-primary-600 dark:text-primary-400">.</span>
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
