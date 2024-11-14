@@ -40,7 +40,7 @@ export default function Navigation() {
             href="/"
             className="text-xl font-bold text-gray-900 dark:text-white"
           >
-            YourName
+            Miles Herrman
           </Link>
 
           {/* Desktop Navigation */}
