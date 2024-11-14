@@ -1,5 +1,7 @@
 import { Metadata } from 'next'
-import Hero from '@/components/home/Hero'
+import Main from '@/components/home/main'
+import About from '@/components/home/About'
+import Contact from '@/components/home/Contact'
 // import Projects from '@/components/home/Projects'
 // import About from '@/components/home/About'
 // import Contact from '@/components/home/Contact'
@@ -16,7 +18,7 @@ export default function Home() {
     <main className="min-h-screen">
       {/* <Navigation /> */}
       
-      <Hero />
+      <Main />
       
       <section id="projects" className="section-padding">
         <div className="container-wrapper">
