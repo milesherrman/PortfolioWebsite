@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Navigation from '@/components/layout/Navigation'
-import Footer from '@/components/layout/Footer'
+import Navigation from '@/components/navigation/page.tsx'
+import Footer from '@/components/footer/page.tsx'
 
 
 export default function RootLayout({
@@ -25,6 +25,6 @@ export default function RootLayout({
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Your Portfolio',
+  title: 'Miles Herrman Portfolio',
   description: 'Full-stack developer portfolio',
 }

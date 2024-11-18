@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import Projects from '@/app/projects/page';
 
 export default function Main() {
   return (
@@ -15,15 +16,16 @@ export default function Main() {
             Passionate about creating elegant solutions to complex problems.
           </p>
           <div className="mt-8 flex gap-4">
+          <Link
+            href="/projects"  
+            className="inline-flex items-center rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white hover:bg-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:bg-primary-500 dark:hover:bg-primary-400"
+          >
+            View Projects
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
+
             <Link
-              href="#projects"
-              className="inline-flex items-center rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white hover:bg-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:bg-primary-500 dark:hover:bg-primary-400"
-            >
-              View Projects
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-            <Link
-              href="#contact"
+              href="/contact"
               className="inline-flex items-center rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
             >
               Contact Me

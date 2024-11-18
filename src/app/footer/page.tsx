@@ -1,9 +1,8 @@
 export default function Footer() {
     // Social links - could be moved to a config file
     const socialLinks = [
-      { name: 'GitHub', href: 'https://github.com/yourusername' },
-      { name: 'LinkedIn', href: 'https://linkedin.com/in/yourusername' },
-      { name: 'Twitter', href: 'https://twitter.com/yourusername' },
+      { name: 'GitHub', href: 'https://github.com/milesherrman' },
+      { name: 'LinkedIn', href: 'https://linkedin.com/in/milesherrman' }
     ]
   
     // Footer links - could be moved to a config file
@@ -20,7 +19,7 @@ export default function Footer() {
             {/* Brand Section */}
             <div className="space-y-4">
               <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-                YourName
+                Miles Herrman
               </h2>
               <p className="text-gray-600 dark:text-gray-300 max-w-md">
                 Full-stack developer passionate about creating modern web applications
@@ -67,7 +66,7 @@ export default function Footer() {
           <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-sm text-gray-600 dark:text-gray-300">
-                © {new Date().getFullYear()} YourName. All rights reserved.
+                © {new Date().getFullYear()} Miles Herrman. All rights reserved.
               </p>
               <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-300">
                 <a href="#" className="hover:text-gray-900 dark:hover:text-white transition-colors">

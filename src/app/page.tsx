@@ -1,44 +1,43 @@
-import { Metadata } from 'next'
-import Main from '@/components/home/main'
-import About from '@/components/home/About'
-import Contact from '@/components/home/Contact'
-// import Projects from '@/components/home/Projects'
-// import About from '@/components/home/About'
-// import Contact from '@/components/home/Contact'
-// import Navigation from '@/components/layout/Navigation'
-// import Footer from '@/components/layout/Footer'
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
+import Projects from '@/app/projects/page';
 
-export const metadata: Metadata = {
-  title: 'Your Name - Portfolio',
-  description: 'Full-stack developer portfolio showcasing projects and skills',
-}
-
-export default function Home() {
+export default function Main() {
   return (
-    <main className="min-h-screen">
-      {/* <Navigation /> */}
-      
-      <Main />
-      
-      <section id="projects" className="section-padding">
-        <div className="container-wrapper">
-          {/* <Projects /> */}
-        </div>
-      </section>
-      
-      <section id="about" className="section-padding bg-gray-50 dark:bg-gray-800">
-        <div className="container-wrapper">
-          {/* <About /> */}
-        </div>
-      </section>
-      
-      <section id="contact" className="section-padding">
-        <div className="container-wrapper">
-          {/* <Contact /> */}
-        </div>
-      </section>
+    <div className="relative overflow-hidden bg-white dark:bg-gray-900">
+      <div className="container-wrapper">
+        <div className="relative z-10 max-w-2xl py-24 sm:py-32">
+          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
+            Miles Herrman
+            <span className="text-primary-600 dark:text-primary-400">.</span>
+          </h1>
+          <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
+            Building modern web applications with React, Next.js, and Node.js.
+            Passionate about creating elegant solutions to complex problems.
+          </p>
+          <div className="mt-8 flex gap-4">
+          <Link
+            href="/projects"  
+            className="inline-flex items-center rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white hover:bg-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:bg-primary-500 dark:hover:bg-primary-400"
+          >
+            View Projects
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
 
-      {/* <Footer /> */}
-    </main>
+            <Link
+              href="/contact"
+              className="inline-flex items-center rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
+            >
+              Contact Me
+            </Link>
+          </div>
+        </div>
+      </div>
+      
+      {/* Background decoration */}
+      <div className="absolute inset-x-0 top-0 -z-10 transform-gpu overflow-hidden blur-3xl">
+        <div className="relative aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-primary-200 to-primary-400 opacity-30" />
+      </div>
+    </div>
   )
 }
