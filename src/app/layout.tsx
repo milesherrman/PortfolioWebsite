@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Navigation from '@/components/navigation/page.tsx'
-import Footer from '@/components/footer/page.tsx'
+import Navigation from '@/app/navigation/page'
+import Footer from '@/app/footer/page'
 
 
 export default function RootLayout({
