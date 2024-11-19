@@ -1,43 +1,126 @@
 "use client"
-import React, { useState } from 'react';
-import { Github, ExternalLink } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Github, ExternalLink, Mouse, ChevronDown } from 'lucide-react';
 
-// Define an interface for the Project structure
+// Custom hook for parallax effect
+const useParallax = () => {
+  useEffect(() => {
+    const handleScroll = () => {
+      const elements = document.querySelectorAll('.parallax');
+      elements.forEach(element => {
+        const speed = parseFloat(element.getAttribute('data-speed') || '0.5');
+        const yPos = -(window.scrollY * speed);
+        (element as HTMLElement).style.transform = `translateY(${yPos}px)`;
+      });
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+};
+
+// Animated background component
+const AnimatedBackground = () => (
+  <div className="fixed inset-0 -z-10 overflow-hidden">
+    <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+      {[...Array(50)].map((_, i) => (
+        <div
+          key={i}
+          className="absolute rounded-full bg-primary-500/10 animate-pulse"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            width: `${Math.random() * 100 + 50}px`,
+            height: `${Math.random() * 100 + 50}px`,
+            animationDelay: `${Math.random() * 5}s`,
+            animationDuration: `${Math.random() * 10 + 5}s`,
+          }}
+        />
+      ))}
+    </div>
+  </div>
+);
+
+// Hero section with 3D tilt effect
+const Hero = () => {
+  const [rotation, setRotation] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientY - rect.top) / rect.height - 0.5;
+    const y = (e.clientX - rect.left) / rect.width - 0.5;
+    setRotation({ x: x * 20, y: y * 20 });
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center relative">
+      <div
+        className="max-w-4xl mx-auto text-center p-8 transition-transform duration-200 ease-out"
+        onMouseMove={handleMouseMove}
+        style={{
+          transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+        }}
+      >
+        <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary-500 to-secondary-500 text-transparent bg-clip-text">
+          Miles Herrman
+        </h1>
+        <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8">
+          Software Engineer & Creative Developer
+        </p>
+        <div className="flex justify-center space-x-4 mb-12">
+          <Mouse className="animate-bounce" size={24} />
+          <ChevronDown className="animate-bounce" size={24} />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Enhanced Project Card
 interface Project {
   title: string;
-  description: string;
+  overview: string;
+  technicalDetails: string;
+  keyTakeaways: string[];
+  futureWork: string;
   technologies: string[];
   githubLink?: string | null;
   liveLink?: string | null;
   imageUrl: string;
 }
 
-// Type the ProjectCard component props
-interface ProjectCardProps extends Project {}
-
-const ProjectCard: React.FC<ProjectCardProps> = ({ 
-  title, 
-  description, 
-  technologies, 
-  githubLink, 
-  liveLink, 
-  imageUrl 
+const ProjectCard: React.FC<Project> = ({
+  title,
+  overview,
+  technicalDetails,
+  keyTakeaways,
+  futureWork,
+  technologies,
+  githubLink,
+  liveLink,
+  imageUrl
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [activeTab, setActiveTab] = useState<'overview' | 'technical' | 'future'>('overview');
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-[1.02]">
-      <div className="relative">
-        <img 
-          src={imageUrl} 
-          alt={`${title} project screenshot`} 
-          className="w-full h-64 object-cover"
+    <div
+      className="group bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-[1.02]"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="relative overflow-hidden">
+        <img
+          src={imageUrl}
+          alt={`${title} project screenshot`}
+          className="w-full h-64 object-cover transform transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute top-4 right-4 flex space-x-2">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute top-4 right-4 flex space-x-2 transform translate-y-[-100%] group-hover:translate-y-0 transition-transform duration-300">
           {githubLink && (
-            <a 
-              href={githubLink} 
-              target="_blank" 
+            <a
+              href={githubLink}
+              target="_blank"
               rel="noopener noreferrer"
               className="bg-gray-800/70 text-white p-2 rounded-full hover:bg-gray-800/90 transition"
             >
@@ -45,9 +128,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             </a>
           )}
           {liveLink && (
-            <a 
-              href={liveLink} 
-              target="_blank" 
+            <a
+              href={liveLink}
+              target="_blank"
               rel="noopener noreferrer"
               className="bg-primary-600/70 text-white p-2 rounded-full hover:bg-primary-600/90 transition"
             >
@@ -56,24 +139,59 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           )}
         </div>
       </div>
+
       <div className="p-6">
-        <h2 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">
+        <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white bg-gradient-to-r from-primary-500 to-secondary-500 bg-[length:0%_2px] bg-no-repeat bg-left-bottom group-hover:bg-[length:100%_2px] transition-all duration-500">
           {title}
         </h2>
-        <p className={`text-gray-600 dark:text-gray-300 mb-4 ${isExpanded ? '' : 'line-clamp-3'}`}>
-          {description}
-        </p>
-        <button 
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="text-primary-600 hover:text-primary-700 mb-4"
-        >
-          {isExpanded ? 'Show Less' : 'Read More'}
-        </button>
+
+        <div className="flex space-x-2 mb-6">
+          {['overview', 'technical', 'future'].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab as typeof activeTab)}
+              className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${
+                activeTab === tab
+                  ? 'bg-gradient-to-r from-primary-500 to-secondary-500 text-white'
+                  : 'text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700'
+              }`}
+            >
+              {tab.charAt(0).toUpperCase() + tab.slice(1)}
+            </button>
+          ))}
+        </div>
+
+        <div className="mb-6 min-h-[200px]">
+          {activeTab === 'overview' && (
+            <div className="space-y-4 animate-fadeIn">
+              <p className="text-gray-600 dark:text-gray-300">{overview}</p>
+              <h3 className="font-semibold text-gray-900 dark:text-white">Key Takeaways</h3>
+              <ul className="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-2">
+                {keyTakeaways.map((takeaway, index) => (
+                  <li key={index}>{takeaway}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {activeTab === 'technical' && (
+            <p className="text-gray-600 dark:text-gray-300 animate-fadeIn">
+              {technicalDetails}
+            </p>
+          )}
+
+          {activeTab === 'future' && (
+            <p className="text-gray-600 dark:text-gray-300 animate-fadeIn">
+              {futureWork}
+            </p>
+          )}
+        </div>
+
         <div className="flex flex-wrap gap-2">
           {technologies.map((tech, index) => (
-            <span 
+            <span
               key={index}
-              className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm"
+              className="bg-gradient-to-r from-primary-500/10 to-secondary-500/10 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm transform transition-transform duration-300 hover:scale-110"
             >
               {tech}
             </span>
@@ -84,53 +202,111 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   );
 };
 
+// Main Page Component
 export default function ProjectsPage() {
+  useParallax();
+
+  // Your projects data here...
   const projects: Project[] = [
     {
-      title: "Cybersecurity Senior Project",
-      description: "A comprehensive cybersecurity analysis and threat detection system developed as a senior capstone project. The project involved creating a multi-layered security framework that integrates network monitoring, intrusion detection, and real-time threat analysis using advanced machine learning algorithms.",
-      technologies: [
-        "Python", 
-        "Machine Learning", 
-        "Network Security", 
-        "Tensorflow", 
-        "Wireshark"
+      title: "Voice Authentication Mechanism for Secure Voice Calls",
+      overview: "Developed an innovative voice authentication system using deep learning to enhance security in voice calls. This Cal Poly senior project implements passive liveness detection through a multi-model approach, utilizing state-of-the-art Wav2Vec models to authenticate speakers and detect spoofed audio in real-time.",
+      technicalDetails: `Technical implementation centered around two fine-tuned Wav2Vec2 models:
+  
+  1. Spoof Detection Model:
+  - Fine-tuned Facebook's Wav2Vec2 architecture for binary classification
+  - Implemented MFCC and spectrogram feature extraction
+  - Optimized for real-time processing of audio streams
+  - Achieved high accuracy in detecting synthetic and replayed audio
+  
+  2. Speaker Identification Model:
+  - Adapted Wav2Vec2 for speaker verification
+  - Implemented transfer learning and domain adaptation techniques
+  - Created robust feature extraction pipeline
+  - Enhanced performance through custom loss functions
+  
+  The system processes audio through both models simultaneously, providing a dual-layer authentication mechanism that significantly improves security compared to single-model approaches.`,
+      keyTakeaways: [
+        "Successfully implemented dual-model voice authentication system",
+        "Achieved high accuracy in both spoof detection and speaker verification",
+        "Developed real-time processing capabilities for live voice calls",
+        "Created a scalable architecture suitable for production deployment",
+        "Demonstrated practical application of state-of-the-art speech processing models"
       ],
-      githubLink: "https://github.com/yourusername/cybersecurity-project",
+      futureWork: "Future development will focus on three key areas: model optimization for reduced latency, integration of multi-modal fusion techniques incorporating visual data, and deployment optimization for real-world applications. Planning to explore adversarial training methods to enhance robustness against novel spoofing attacks and implement edge deployment capabilities for improved privacy.",
+      technologies: [
+        "Python",
+        "PyTorch",
+        "Wav2Vec2",
+        "Signal Processing",
+        "TensorFlow",
+        "Docker",
+        "FastAPI"
+      ],
+      githubLink: "https://github.com/yourusername/voice-auth-mechanism",
       liveLink: null,
       imageUrl: "/api/placeholder/800/400"
     },
     {
-      title: "Personal Portfolio Website",
-      description: "A modern, responsive personal portfolio website built with Next.js and Tailwind CSS. The site showcases my software development projects, provides a clean and interactive user experience, and demonstrates my skills in full-stack web development. Features include dark mode, smooth animations, and comprehensive project showcases.",
-      technologies: [
-        "Next.js", 
-        "TypeScript", 
-        "Tailwind CSS", 
-        "React", 
-        "Vercel"
+      title: "Modern Portfolio Website",
+      overview: "Designed and developed a dynamic, interactive portfolio website using cutting-edge web technologies. This project serves as both a showcase of my work and a playground for experimenting with modern front-end development practices, featuring animated UI elements, responsive design, and seamless dark mode implementation.",
+      technicalDetails: `Built with a modern tech stack emphasizing developer experience and performance:
+  
+  1. Core Technologies:
+  - Next.js 14 with App Router for optimized routing and server components
+  - TypeScript for type safety and improved development experience
+  - Tailwind CSS for utility-first styling and rapid prototyping
+  - React hooks for state management and component logic
+  
+  2. Enhanced Features:
+  - Custom animations using CSS transforms and Tailwind transitions
+  - Responsive design with mobile-first approach
+  - Dark mode implementation with system preference detection
+  - Interactive UI elements with smooth transitions
+  - Optimized images and lazy loading for performance
+  - SEO optimization using Next.js metadata API`,
+      keyTakeaways: [
+        "Implemented modern React patterns and best practices",
+        "Created responsive layouts using Tailwind CSS",
+        "Developed custom animations and interactive elements",
+        "Achieved optimal performance scores in Lighthouse",
+        "Applied TypeScript for enhanced code quality"
       ],
-      githubLink: "https://github.com/yourusername/portfolio-website",
-      liveLink: "https://yourdomain.com",
+      futureWork: "Planning to expand the website with additional features including a blog section using MDX for technical writing, integration with GitHub API to automatically showcase latest projects, and implementation of a custom CMS for easier content management. Will also add interactive 3D elements using Three.js and improve accessibility features.",
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "React",
+        "Tailwind CSS",
+        "Lucide Icons",
+        "Vercel",
+        "shadcn/ui"
+      ],
+      githubLink: "https://github.com/yourusername/portfolio",
+      liveLink: "https://your-portfolio-url.com",
       imageUrl: "/api/placeholder/800/400"
     }
   ];
 
   return (
-    <div className="container-wrapper min-h-screen py-16 bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-bold mb-12 text-center text-gray-900 dark:text-white">
-          Featured Projects
-        </h1>
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <ProjectCard 
-              key={index}
-              {...project}
-            />
-          ))}
+    <>
+      <AnimatedBackground />
+      <Hero />
+      <div className="relative min-h-screen py-16">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center text-gray-900 dark:text-white parallax" data-speed="0.3">
+            Featured Projects
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {projects.map((project, index) => (
+              <ProjectCard
+                key={index}
+                {...project}
+              />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
