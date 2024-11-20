@@ -7,9 +7,9 @@ export default function Footer() {
   
     // Footer links - could be moved to a config file
     const footerLinks = [
-      { name: 'Projects', href: '#projects' },
-      { name: 'About', href: '#about' },
-      { name: 'Contact', href: '#contact' },
+      { name: 'Projects', href: '/projects' },
+      { name: 'About', href: '/about' },
+      { name: 'Contact', href: '/contact' },
     ]
   
     return (

@@ -14,6 +14,7 @@ export default function Navigation() {
     { name: 'Projects', href: '/projects' },
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
+    { name: 'Resume', href: '/resume' },
   ]
 
   // Handle scroll effect

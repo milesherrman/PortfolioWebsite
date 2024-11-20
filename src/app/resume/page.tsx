@@ -1,135 +1,213 @@
-import React from 'react';
-import { Download } from 'lucide-react';
+"use client"
+import React, { useState } from 'react';
+import { Download, Mail, Linkedin, Github, MapPin, GraduationCap, Briefcase, Award, BookOpen } from 'lucide-react';
 
-const ResumePage = () => {
-  // Sample resume data - replace with your actual data
-  const resumeData = {
-    name: "John Doe",
-    title: "Software Engineer",
-    contact: {
-      email: "john.doe@email.com",
-      phone: "(555) 123-4567",
-      location: "San Francisco, CA",
-      linkedin: "linkedin.com/in/johndoe"
-    },
-    experience: [
-      {
-        company: "Tech Company",
-        position: "Senior Software Engineer",
-        period: "2020 - Present",
-        achievements: [
-          "Led development of core platform features serving 1M+ users",
-          "Improved system performance by 40% through optimization",
-          "Mentored 5 junior developers"
-        ]
-      },
-      {
-        company: "Startup Inc",
-        position: "Software Engineer",
-        period: "2018 - 2020",
-        achievements: [
-          "Developed and launched company's flagship mobile app",
-          "Implemented CI/CD pipeline reducing deployment time by 60%"
-        ]
-      }
-    ],
-    education: [
-      {
-        school: "University of Technology",
-        degree: "BS in Computer Science",
-        year: "2018"
-      }
-    ],
-    skills: [
-      "JavaScript", "React", "Node.js", "Python",
-      "AWS", "Docker", "Git", "Agile"
-    ]
-  };
-
-  const handleDownload = () => {
-    // In a real implementation, this would trigger the download of your actual resume PDF
-    alert("In a real implementation, this would download the resume PDF");
-  };
+// Reuse the AnimatedBackground component from your projects page
+const AnimatedBackground = () => {
+  const backgroundElements = Array.from({ length: 50 }, (_, i) => ({
+    id: i,
+    left: (i * 73) % 100,
+    top: (i * 47) % 100,
+    width: 50 + ((i * 83) % 100),
+    height: 50 + ((i * 83) % 100),
+    animationDelay: (i * 0.1) % 5,
+    animationDuration: 5 + ((i * 89) % 10)
+  }));
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-4xl mx-auto px-4">
-        {/* Header with download button */}
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Resume</h1>
-          <button 
-            onClick={handleDownload}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
-          >
-            <Download size={20} />
-            Download PDF
-          </button>
-        </div>
-
-        {/* Resume Content */}
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          {/* Personal Info */}
-          <div className="text-center mb-8">
-            <h2 className="text-4xl font-bold text-gray-800">{resumeData.name}</h2>
-            <p className="text-xl text-gray-600 mt-2">{resumeData.title}</p>
-            <div className="flex flex-wrap justify-center gap-4 mt-4 text-gray-600">
-              <span>{resumeData.contact.email}</span>
-              <span>{resumeData.contact.phone}</span>
-              <span>{resumeData.contact.location}</span>
-            </div>
-          </div>
-
-          {/* Experience */}
-          <section className="mb-8">
-            <h3 className="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Experience</h3>
-            {resumeData.experience.map((exp, index) => (
-              <div key={index} className="mb-6">
-                <div className="flex flex-wrap justify-between items-baseline">
-                  <h4 className="text-xl font-semibold text-gray-800">{exp.company}</h4>
-                  <span className="text-gray-600">{exp.period}</span>
-                </div>
-                <p className="text-gray-700 mb-2">{exp.position}</p>
-                <ul className="list-disc list-inside text-gray-600">
-                  {exp.achievements.map((achievement, i) => (
-                    <li key={i} className="mb-1">{achievement}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </section>
-
-          {/* Education */}
-          <section className="mb-8">
-            <h3 className="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Education</h3>
-            {resumeData.education.map((edu, index) => (
-              <div key={index} className="mb-4">
-                <div className="flex flex-wrap justify-between items-baseline">
-                  <h4 className="text-xl font-semibold text-gray-800">{edu.school}</h4>
-                  <span className="text-gray-600">{edu.year}</span>
-                </div>
-                <p className="text-gray-700">{edu.degree}</p>
-              </div>
-            ))}
-          </section>
-
-          {/* Skills */}
-          <section>
-            <h3 className="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Skills</h3>
-            <div className="flex flex-wrap gap-2">
-              {resumeData.skills.map((skill, index) => (
-                <span 
-                  key={index}
-                  className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </section>
-        </div>
+    <div className="fixed inset-0 -z-10 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+        {backgroundElements.map((element) => (
+          <div
+            key={element.id}
+            className="absolute rounded-full bg-primary-500/10 animate-pulse"
+            style={{
+              left: `${element.left}%`,
+              top: `${element.top}%`,
+              width: `${element.width}px`,
+              height: `${element.height}px`,
+              animationDelay: `${element.animationDelay}s`,
+              animationDuration: `${element.animationDuration}s`,
+            }}
+          />
+        ))}
       </div>
     </div>
   );
 };
 
-export default ResumePage;
+const ResumeSection = ({ title, icon: Icon, children }) => (
+  <div className="mb-8">
+    <div className="flex items-center gap-2 mb-4">
+      <Icon className="text-primary-500" size={24} />
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{title}</h2>
+    </div>
+    {children}
+  </div>
+);
+
+const ExperienceCard = ({ role, company, date, location, description }) => (
+  <div className="mb-4 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6">
+    <div className="flex justify-between items-start mb-2 flex-wrap gap-2">
+      <div>
+        <h3 className="font-bold text-lg text-gray-900 dark:text-white">{role}</h3>
+        <p className="text-primary-500 font-medium">{company}</p>
+      </div>
+      <div className="text-right">
+        <p className="text-gray-600 dark:text-gray-300">{date}</p>
+        <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
+          <MapPin size={16} />
+          <span>{location}</span>
+        </div>
+      </div>
+    </div>
+    <ul className="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-1">
+      {description.map((item, index) => (
+        <li key={index}>{item}</li>
+      ))}
+    </ul>
+  </div>
+);
+
+const SkillTag = ({ skill }) => (
+  <span className="bg-gradient-to-r from-primary-500/10 to-secondary-500/10 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm transform transition-transform duration-300 hover:scale-110">
+    {skill}
+  </span>
+);
+
+export default function ResumePage() {
+  const handleDownload = () => {
+    // Replace with actual PDF download logic
+    window.open('/MilesResumeNov2024.pdf', '_blank');
+  };
+
+  return (
+    <>
+      <AnimatedBackground />
+      
+      {/* Header Section */}
+      <div className="min-h-screen">
+        <div className="max-w-4xl mx-auto px-4 py-16">
+          <div className="text-center mb-8">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-primary-500 to-secondary-500 text-transparent bg-clip-text">
+              Miles Herrman
+            </h1>
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-6">
+              Software Engineer & Creative Developer
+            </p>
+            <div className="flex justify-center gap-4 mb-8">
+              <a href="mailto:milesherrmans@gmail.com" className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-500 transition-colors">
+                <Mail size={20} />
+                <span>Email</span>
+              </a>
+              <a href="https://www.linkedin.com/in/milesherrman/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-500 transition-colors">
+                <Linkedin size={20} />
+                <span>LinkedIn</span>
+              </a>
+              <a href="https://github.com/milesherrman" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-500 transition-colors">
+                <Github size={20} />
+                <span>GitHub</span>
+              </a>
+            </div>
+            <button
+              onClick={handleDownload}
+              className="bg-primary-500 text-white px-6 py-3 rounded-lg flex items-center gap-2 mx-auto hover:bg-primary-600 transition-colors"
+            >
+              <Download size={20} />
+              Download Resume
+            </button>
+          </div>
+
+          {/* Education Section */}
+          <ResumeSection title="Education" icon={GraduationCap}>
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+              <div className="flex justify-between items-start mb-2 flex-wrap gap-2">
+                <div>
+                  <h3 className="font-bold text-lg text-gray-900 dark:text-white">California Polytechnic State University</h3>
+                  <p className="text-primary-500">Bachelor of Science in Computer Science</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-gray-600 dark:text-gray-300">Sept 2021 - Sept 2024</p>
+                  <p className="text-gray-500 dark:text-gray-400">GPA: 3.75</p>
+                </div>
+              </div>
+              <ul className="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-1">
+                <li>Graduated Magna Cum Laude in just 3 years</li>
+                <li>Served as an Orientation Leader for Cal Poly's Week of Welcome</li>
+                <li>Active member of the Distance Club</li>
+              </ul>
+            </div>
+          </ResumeSection>
+
+          {/* Experience Section */}
+          <ResumeSection title="Experience" icon={Briefcase}>
+            <ExperienceCard
+              role="English Teaching Assistant"
+              company="CIEE"
+              date="Sept 2024 – Current"
+              location="Madrid, Spain"
+              description={[
+                "Assisted high school teachers with English language lessons",
+                "Developed interactive classroom activities and personalized lesson plans"
+              ]}
+            />
+            <ExperienceCard
+              role="Technical Sales Associate"
+              company="Exclusive Networks"
+              date="Jan 2024 – Sept 2024"
+              location="SLO, California"
+              description={[
+                "Trained extensively on Fortinet cybersecurity fundamentals",
+                "Mentored eight new and junior sales associates",
+                "Led cold outreach initiatives, securing a $300K credit line partnership"
+              ]}
+            />
+            <ExperienceCard
+              role="Cybersecurity Intern"
+              company="Beyond Secure"
+              date="June 2023 – Sept 2023"
+              location="Austin, Texas"
+              description={[
+                "Implemented and managed Cloudflare products",
+                "Participated in technical audit sessions with clients",
+                "Contributed to vulnerability identification and resolution",
+                "Prepared for and passed the CISSP exam"
+              ]}
+            />
+          </ResumeSection>
+
+          {/* Skills Section */}
+          <ResumeSection title="Technical Skills" icon={BookOpen}>
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "Python", "C", "Java", "R", "HTML", "CSS", "JavaScript",
+                  "Visual Studio Code", "GitHub", "RStudio", "React.js",
+                  "MySQL", "Docker", "NetSuite"
+                ].map((skill, index) => (
+                  <SkillTag key={index} skill={skill} />
+                ))}
+              </div>
+            </div>
+          </ResumeSection>
+
+          {/* Certifications Section */}
+          <ResumeSection title="Certifications" icon={Award}>
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+              <ul className="space-y-2 text-gray-600 dark:text-gray-300">
+                <li className="flex items-center gap-2">
+                  <Award size={16} className="text-primary-500" />
+                  CISSP: Certified Information Systems Security Professional
+                </li>
+                <li className="flex items-center gap-2">
+                  <Award size={16} className="text-primary-500" />
+                  Fortinet Certified Fundamentals: Technical Introduction to Cybersecurity
+                </li>
+              </ul>
+            </div>
+          </ResumeSection>
+        </div>
+      </div>
+    </>
+  );
+}

@@ -2,7 +2,46 @@
 import React, { useState, useEffect } from 'react';
 import { Github, ExternalLink, Mouse, ChevronDown } from 'lucide-react';
 
-// Custom hook for parallax effect
+// Pre-calculate random positions for the animated background
+const generateBackgroundElements = (count: number) => {
+  // This function runs only once during module initialization
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    left: (i * 73) % 100, // Using prime numbers to create pseudo-random distribution
+    top: (i * 47) % 100,
+    width: 50 + ((i * 83) % 100),
+    height: 50 + ((i * 83) % 100),
+    animationDelay: (i * 0.1) % 5,
+    animationDuration: 5 + ((i * 89) % 10)
+  }));
+};
+
+// Pre-calculated background elements
+const backgroundElements = generateBackgroundElements(50);
+
+// Animated background component without Math.random
+const AnimatedBackground = () => (
+  <div className="fixed inset-0 -z-10 overflow-hidden">
+    <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+      {backgroundElements.map((element) => (
+        <div
+          key={element.id}
+          className="absolute rounded-full bg-primary-500/10 animate-pulse"
+          style={{
+            left: `${element.left}%`,
+            top: `${element.top}%`,
+            width: `${element.width}px`,
+            height: `${element.height}px`,
+            animationDelay: `${element.animationDelay}s`,
+            animationDuration: `${element.animationDuration}s`,
+          }}
+        />
+      ))}
+    </div>
+  </div>
+);
+
+// Rest of your components remain the same...
 const useParallax = () => {
   useEffect(() => {
     const handleScroll = () => {
@@ -18,28 +57,6 @@ const useParallax = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 };
-
-// Animated background component
-const AnimatedBackground = () => (
-  <div className="fixed inset-0 -z-10 overflow-hidden">
-    <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-      {[...Array(50)].map((_, i) => (
-        <div
-          key={i}
-          className="absolute rounded-full bg-primary-500/10 animate-pulse"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            width: `${Math.random() * 100 + 50}px`,
-            height: `${Math.random() * 100 + 50}px`,
-            animationDelay: `${Math.random() * 5}s`,
-            animationDuration: `${Math.random() * 10 + 5}s`,
-          }}
-        />
-      ))}
-    </div>
-  </div>
-);
 
 // Hero section with 3D tilt effect
 const Hero = () => {

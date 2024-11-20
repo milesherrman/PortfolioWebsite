@@ -45,13 +45,13 @@ export default function Main() {
   useEffect(() => {
     setIsLoaded(true);
     const handleMouseMove = (e: MouseEvent) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 20;
-      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+      const x = (e.clientX / globalThis.innerWidth - 0.5) * 20;
+      const y = (e.clientY / globalThis.innerHeight - 0.5) * 20;
       setMousePosition({ x, y });
     };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+  
+    globalThis.addEventListener('mousemove', handleMouseMove);
+    return () => globalThis.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   return (
