@@ -3,6 +3,41 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Code2, Network, Rocket, Users, Coffee, Brain } from "lucide-react";
 
+const generateBackgroundElements = (count) => {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    left: (i * 73) % 100,
+    top: (i * 47) % 100,
+    width: 50 + ((i * 83) % 100),
+    height: 50 + ((i * 83) % 100),
+    animationDelay: (i * 0.1) % 5,
+    animationDuration: 5 + ((i * 89) % 10)
+  }));
+};
+
+const backgroundElements = generateBackgroundElements(50);
+
+const AnimatedBackground = () => (
+  <div className="fixed inset-0 -z-10 overflow-hidden">
+    <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+      {backgroundElements.map((element) => (
+        <div
+          key={element.id}
+          className="absolute rounded-full bg-primary-500/10 animate-pulse"
+          style={{
+            left: `${element.left}%`,
+            top: `${element.top}%`,
+            width: `${element.width}px`,
+            height: `${element.height}px`,
+            animationDelay: `${element.animationDelay}s`,
+            animationDuration: `${element.animationDuration}s`,
+          }}
+        />
+      ))}
+    </div>
+  </div>
+);
+
 export default function About() {
   const [activeTab, setActiveTab] = useState("personal");
 
@@ -43,92 +78,119 @@ export default function About() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
-      {/* Hero Section */}
-      <div className="container-wrapper flex flex-col md:flex-row items-center gap-12 py-16">
-        <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-primary-500 dark:border-primary-400">
-          <Image
-            src="/api/placeholder/256/256"
-            alt="Profile"
-            layout="fill"
-            objectFit="cover"
-            className="rounded-full"
-          />
+    <>
+      <AnimatedBackground/>
+        {/* Hero Section */}
+        <div className="container-wrapper flex flex-col md:flex-row items-center gap-12 py-16">
+          <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-primary-500 dark:border-primary-400">
+            <Image
+              src="/api/placeholder/256/256"
+              alt="Profile"
+              layout="fill"
+              objectFit="cover"
+              className="rounded-full"
+            />
+          </div>
+
+          <div className="flex-1">
+          <h1 className="mt-16 text-5xl md:text-7xl font-bold tracking-tight mb-4">
+              <span className="bg-gradient-to-r from-primary-500 via-primary-400 to-secondary-500 dark:from-primary-300 dark:via-primary-200 dark:to-secondary-300 bg-clip-text text-transparent animate-gradient-x"
+                style={{
+                  animationDuration: '6s',
+                  backgroundSize: '150%',
+                }}>
+                About Me
+              </span>
+
+              <span className="text-primary-500 dark:text-primary-300 animate-pulse" style={{ animationDuration: '2s' }}>.</span>
+            </h1>
+
+            <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+              Hi, I'm Miles Herrman, a recent Computer Science graduate with a knack for solving 
+              complex problems and a love for connecting with others. My time at Cal Poly was 
+              unforgettable—balancing rigorous coursework, hands-on projects, and meaningful 
+              internships prepared me to tackle real-world challenges.
+            </p>
+
+            <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+              When I’m not diving into code or cybersecurity frameworks, you’ll find me embracing 
+              the outdoors. Whether it’s running, snowboarding, biking, climbing, or jamming on my 
+              guitar, I’m always seeking new adventures and creative outlets. I’m excited to take 
+              what I’ve learned from my studies and work experiences and apply it to practical, 
+              impactful solutions.
+            </p>
+
+            <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+              If you're looking for someone who combines technical expertise with a passion for 
+              exploration and teamwork, let’s connect!
+            </p>
+
+          </div>
         </div>
 
-        <div className="flex-1">
-          <h1 className="text-5xl font-bold tracking-tight text-transparent bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text">
-            About Me
-          </h1>
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-            Full-stack developer with a passion for cybersecurity and human connections.
-          </p>
-        </div>
-      </div>
-
-      {/* Tab Navigation */}
-      <div className="container-wrapper flex justify-center mb-12">
-        <div className="flex space-x-4 bg-gray-100 dark:bg-gray-800 p-1 rounded-lg">
-          {["personal", "technical"].map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-6 py-2 rounded-md transition-all ${
-                activeTab === tab
-                  ? "bg-primary-500 text-white shadow-lg" // Solid background color for the active tab
-                  : "text-gray-600 dark:text-gray-400 hover:text-primary-500"
-              }`}
-            >
-              {tab.charAt(0).toUpperCase() + tab.slice(1)}
-            </button>
-          ))}
-        </div>
-      </div>
-
-
-      {/* Content Sections */}
-      <div className="container-wrapper grid gap-8">
-        {activeTab === "personal" ? (
-          <div className="grid md:grid-cols-3 gap-6">
-            {interests.map((interest) => (
-              <div
-                key={interest.title}
-                className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transform transition-transform duration-300"
+        {/* Tab Navigation */}
+        <div className="container-wrapper flex justify-center mb-12">
+          <div className="flex space-x-4 bg-gray-100 dark:bg-gray-800 p-1 rounded-lg">
+            {["personal", "technical"].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-6 py-2 rounded-md transition-all ${
+                  activeTab === tab
+                    ? "bg-primary-500 text-white shadow-lg" // Solid background color for the active tab
+                    : "text-gray-600 dark:text-gray-400 hover:text-primary-500"
+                }`}
               >
-                <div className="text-primary-500 dark:text-primary-400 mb-4">{interest.icon}</div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                  {interest.title}
-                </h3>
-                <p className="mt-2 text-gray-600 dark:text-gray-300">{interest.description}</p>
-              </div>
+                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+              </button>
             ))}
           </div>
-        ) : (
-          <div className="grid md:grid-cols-3 gap-6">
-            {skills.map((skillGroup) => (
-              <div
-                key={skillGroup.category}
-                className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transform transition-transform duration-300"
-              >
-                <div className="text-primary-500 dark:text-primary-400 mb-4">{skillGroup.icon}</div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                  {skillGroup.category}
-                </h3>
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {skillGroup.techs.map((tech) => (
-                    <span
-                      key={tech}
-                      className="bg-primary-500 text-white px-3 py-1 rounded-full text-sm"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+        </div>
+
+
+        {/* Content Sections */}
+        <div className="container-wrapper grid gap-8">
+          {activeTab === "personal" ? (
+            <div className="grid md:grid-cols-3 gap-6">
+              {interests.map((interest) => (
+                <div
+                  key={interest.title}
+                  className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transform transition-transform duration-300"
+                >
+                  <div className="text-primary-500 dark:text-primary-400 mb-4">{interest.icon}</div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    {interest.title}
+                  </h3>
+                  <p className="mt-2 text-gray-600 dark:text-gray-300">{interest.description}</p>
                 </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-3 gap-6">
+              {skills.map((skillGroup) => (
+                <div
+                  key={skillGroup.category}
+                  className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transform transition-transform duration-300"
+                >
+                  <div className="text-primary-500 dark:text-primary-400 mb-4">{skillGroup.icon}</div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    {skillGroup.category}
+                  </h3>
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {skillGroup.techs.map((tech) => (
+                      <span
+                        key={tech}
+                        className="bg-primary-500 text-white px-3 py-1 rounded-full text-sm"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+    </>
   );
 }

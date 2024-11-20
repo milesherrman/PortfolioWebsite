@@ -55,7 +55,7 @@ const ExperienceCard = ({ role, company, date, location, description }) => (
       </div>
       <div className="text-right">
         <p className="text-gray-600 dark:text-gray-300">{date}</p>
-        <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
+        <div className="flex justify-end items-center gap-1 text-gray-500 dark:text-gray-400 mb-4">
           <MapPin size={16} />
           <span>{location}</span>
         </div>
@@ -89,17 +89,28 @@ export default function ResumePage() {
       <div className="min-h-screen">
         <div className="max-w-4xl mx-auto px-4 py-16">
           <div className="text-center mb-8">
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-primary-500 to-secondary-500 text-transparent bg-clip-text">
-              Miles Herrman
+            {/* Name with animated gradient */}
+            <h1 className="mt-16 text-5xl md:text-7xl font-bold tracking-tight mb-4">
+              <span
+                className={`bg-gradient-to-r from-primary-500 via-primary-400 to-secondary-500 dark:from-primary-300 dark:via-primary-200 dark:to-secondary-300 
+                            bg-clip-text text-transparent animate-gradient-x`}
+                style={{
+                  animationDuration: '6s', // Slower animation
+                  backgroundSize: '150%',  // Less extreme fade
+                }}
+              >
+                Resume
+              </span>
+              <span className="text-primary-500 dark:text-primary-300 animate-pulse" style={{ animationDuration: '2s' }}>
+                .
+              </span>
             </h1>
+
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-6">
               Software Engineer & Creative Developer
             </p>
             <div className="flex justify-center gap-4 mb-8">
-              <a href="mailto:milesherrmans@gmail.com" className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-500 transition-colors">
-                <Mail size={20} />
-                <span>Email</span>
-              </a>
+              
               <a href="https://www.linkedin.com/in/milesherrman/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-500 transition-colors">
                 <Linkedin size={20} />
                 <span>LinkedIn</span>
@@ -123,11 +134,11 @@ export default function ResumePage() {
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
               <div className="flex justify-between items-start mb-2 flex-wrap gap-2">
                 <div>
-                  <h3 className="font-bold text-lg text-gray-900 dark:text-white">California Polytechnic State University</h3>
+                  <h3 className="font-bold text-lg text-gray-900 dark:text-white">California Polytechnic State University - San Luis Obispo</h3>
                   <p className="text-primary-500">Bachelor of Science in Computer Science</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-gray-600 dark:text-gray-300">Sept 2021 - Sept 2024</p>
+                  <p className="text-gray-600 dark:text-gray-300">September 2021 - September 2024</p>
                   <p className="text-gray-500 dark:text-gray-400">GPA: 3.75</p>
                 </div>
               </div>
@@ -144,7 +155,7 @@ export default function ResumePage() {
             <ExperienceCard
               role="English Teaching Assistant"
               company="CIEE"
-              date="Sept 2024 – Current"
+              date="September 2024 – Current"
               location="Madrid, Spain"
               description={[
                 "Assisted high school teachers with English language lessons",
@@ -154,8 +165,8 @@ export default function ResumePage() {
             <ExperienceCard
               role="Technical Sales Associate"
               company="Exclusive Networks"
-              date="Jan 2024 – Sept 2024"
-              location="SLO, California"
+              date="January 2024 – September 2024"
+              location="San Luis Obispo, California"
               description={[
                 "Trained extensively on Fortinet cybersecurity fundamentals",
                 "Mentored eight new and junior sales associates",
@@ -165,7 +176,7 @@ export default function ResumePage() {
             <ExperienceCard
               role="Cybersecurity Intern"
               company="Beyond Secure"
-              date="June 2023 – Sept 2023"
+              date="June 2023 – September 2023"
               location="Austin, Texas"
               description={[
                 "Implemented and managed Cloudflare products",
@@ -174,21 +185,6 @@ export default function ResumePage() {
                 "Prepared for and passed the CISSP exam"
               ]}
             />
-          </ResumeSection>
-
-          {/* Skills Section */}
-          <ResumeSection title="Technical Skills" icon={BookOpen}>
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-              <div className="flex flex-wrap gap-2">
-                {[
-                  "Python", "C", "Java", "R", "HTML", "CSS", "JavaScript",
-                  "Visual Studio Code", "GitHub", "RStudio", "React.js",
-                  "MySQL", "Docker", "NetSuite"
-                ].map((skill, index) => (
-                  <SkillTag key={index} skill={skill} />
-                ))}
-              </div>
-            </div>
           </ResumeSection>
 
           {/* Certifications Section */}
@@ -206,6 +202,23 @@ export default function ResumePage() {
               </ul>
             </div>
           </ResumeSection>
+
+          {/* Skills Section */}
+          <ResumeSection title="Technical Skills" icon={BookOpen}>
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "Python", "C", "Java", "R", "HTML", "CSS", "JavaScript",
+                  "Visual Studio Code", "GitHub", "RStudio", "React.js",
+                  "MySQL", "Docker", "NetSuite"
+                ].map((skill, index) => (
+                  <SkillTag key={index} skill={skill} />
+                ))}
+              </div>
+            </div>
+          </ResumeSection>
+
+          
         </div>
       </div>
     </>

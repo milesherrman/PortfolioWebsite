@@ -2,44 +2,84 @@
 import React, { useState, useEffect } from 'react';
 import { Github, ExternalLink, Mouse, ChevronDown } from 'lucide-react';
 
-// Pre-calculate random positions for the animated background
+
+// Enhanced background element generation with more animation parameters
 const generateBackgroundElements = (count: number) => {
-  // This function runs only once during module initialization
   return Array.from({ length: count }, (_, i) => ({
     id: i,
-    left: (i * 73) % 100, // Using prime numbers to create pseudo-random distribution
+    left: (i * 73) % 100,
     top: (i * 47) % 100,
     width: 50 + ((i * 83) % 100),
     height: 50 + ((i * 83) % 100),
     animationDelay: (i * 0.1) % 5,
-    animationDuration: 5 + ((i * 89) % 10)
+    animationDuration: 5 + ((i * 89) % 10),
+    moveX: 6 + ((i * 67) % 20), // Random movement range for X
+    moveY: 6 + ((i * 53) % 20), // Random movement range for Y
+    scale: 0.5 + ((i * 31) % 3) / 10, // Random scale factor
   }));
 };
 
-// Pre-calculated background elements
 const backgroundElements = generateBackgroundElements(50);
 
-// Animated background component without Math.random
 const AnimatedBackground = () => (
   <div className="fixed inset-0 -z-10 overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+      <style>{`
+        @keyframes float {
+          0% {
+            transform: translate(0, 0) scale(1);
+          }
+          25% {
+            transform: translate(var(--moveX), var(--moveY)) scale(var(--scale));
+          }
+          50% {
+            transform: translate(var(--moveX), calc(var(--moveY) * -1)) scale(1);
+          }
+          75% {
+            transform: translate(calc(var(--moveX) * -1), var(--moveY)) scale(var(--scale));
+          }
+          100% {
+            transform: translate(0, 0) scale(1);
+          }
+        }
+        
+        .floating-blob {
+          animation: float var(--duration) ease-in-out infinite;
+          animation-delay: var(--delay);
+        }
+        
+        .floating-blob::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border-radius: 50%;
+          background: inherit;
+          filter: blur(5px);
+          opacity: 0.7;
+        }
+      `}</style>
+      
       {backgroundElements.map((element) => (
         <div
           key={element.id}
-          className="absolute rounded-full bg-primary-500/10 animate-pulse"
+          className="absolute rounded-full bg-primary-500/10 floating-blob"
           style={{
             left: `${element.left}%`,
             top: `${element.top}%`,
             width: `${element.width}px`,
             height: `${element.height}px`,
-            animationDelay: `${element.animationDelay}s`,
-            animationDuration: `${element.animationDuration}s`,
-          }}
+            '--moveX': `${element.moveX}px`,
+            '--moveY': `${element.moveY}px`,
+            '--scale': element.scale,
+            '--delay': `${element.animationDelay}s`,
+            '--duration': `${element.animationDuration}s`,
+          } as React.CSSProperties}
         />
       ))}
     </div>
   </div>
 );
+
 
 // Rest of your components remain the same...
 const useParallax = () => {
@@ -78,9 +118,23 @@ const Hero = () => {
           transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
         }}
       >
-        <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary-500 to-secondary-500 text-transparent bg-clip-text">
-          Miles Herrman
+        {/* Name with animated gradient */}
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-4">
+          <span
+            className={`bg-gradient-to-r from-primary-500 via-primary-400 to-secondary-500 dark:from-primary-300 dark:via-primary-200 dark:to-secondary-300 
+                        bg-clip-text text-transparent animate-gradient-x`}
+            style={{
+              animationDuration: '6s', // Slower animation
+              backgroundSize: '150%',  // Less extreme fade
+            }}
+          >
+            Projects
+          </span>
+          <span className="text-primary-500 dark:text-primary-300 animate-pulse" style={{ animationDuration: '2s' }}>
+            .
+          </span>
         </h1>
+
         <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8">
           Software Engineer & Creative Developer
         </p>

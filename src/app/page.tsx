@@ -78,28 +78,23 @@ export default function Main() {
           }}
         >
           {/* Name with animated gradient */}
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-4">
-            <span
-              className={`bg-gradient-to-r from-primary-500 to-secondary-500 dark:from-primary-300 dark:to-secondary-300 
-                          bg-clip-text text-transparent animate-gradient-x`}
-              style={{
-                animationDuration: '6s', // Slower animation
-                backgroundSize: '200%',  // Smooth transition
-              }}
-            >
-              Miles Herrman
-            </span>
-            <span className="text-primary-500 dark:text-primary-300 animate-pulse" style={{ animationDuration: '2s' }}>
-              .
-            </span>
-          </h1>
+          <h1 className="mt-16 text-5xl md:text-7xl font-bold tracking-tight mb-4">
+              <span className="bg-gradient-to-r from-primary-500 via-primary-400 to-secondary-500 dark:from-primary-300 dark:via-primary-200 dark:to-secondary-300 bg-clip-text text-transparent animate-gradient-x"
+                style={{
+                  animationDuration: '6s',
+                  backgroundSize: '150%',
+                }}>
+                Miles Herrman
+              </span>
+              <span className="text-primary-500 dark:text-primary-300 animate-pulse" style={{ animationDuration: '2s' }}>.</span>
+            </h1>
 
 
 
           {/* Animated typing effect */}
           <div className="h-16 md:h-20">
             <h2 className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-semibold">
-              <TypingText text="Software Engineer & Full Stack Developer" />
+              <TypingText text="Computer Science Graduate & Cybersecurity Enthusiast" />
             </h2>
           </div>
 
