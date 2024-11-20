@@ -43,12 +43,10 @@ export default function About() {
   ];
 
   return (
-    <div
-      className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 section-padding"
-    >
+    <div className="min-h-screen bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
       {/* Hero Section */}
-      <div className="container-wrapper flex flex-col md:flex-row items-center gap-12 mb-16">
-        <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-gray-200 dark:border-gray-700">
+      <div className="container-wrapper flex flex-col md:flex-row items-center gap-12 py-16">
+        <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-primary-500 dark:border-primary-400">
           <Image
             src="/api/placeholder/256/256"
             alt="Profile"
@@ -59,11 +57,11 @@ export default function About() {
         </div>
 
         <div className="flex-1">
-          <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">
-            Hey, I'm Miles 👋
+          <h1 className="text-5xl font-bold tracking-tight text-transparent bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text">
+            About Me
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 mb-6">
-            Full-stack developer with a passion for cybersecurity and human connections
+          <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+            Full-stack developer with a passion for cybersecurity and human connections.
           </p>
         </div>
       </div>
@@ -77,8 +75,8 @@ export default function About() {
               onClick={() => setActiveTab(tab)}
               className={`px-6 py-2 rounded-md transition-all ${
                 activeTab === tab
-                  ? "bg-white shadow-md text-primary-color"
-                  : "text-gray-600 dark:text-gray-400 hover:text-primary-color"
+                  ? "bg-primary-500 text-white shadow-lg" // Solid background color for the active tab
+                  : "text-gray-600 dark:text-gray-400 hover:text-primary-500"
               }`}
             >
               {tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -87,6 +85,7 @@ export default function About() {
         </div>
       </div>
 
+
       {/* Content Sections */}
       <div className="container-wrapper grid gap-8">
         {activeTab === "personal" ? (
@@ -94,13 +93,13 @@ export default function About() {
             {interests.map((interest) => (
               <div
                 key={interest.title}
-                className="project-card"
+                className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transform transition-transform duration-300"
               >
-                <div className="text-secondary-color mb-4">{interest.icon}</div>
-                <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">
+                <div className="text-primary-500 dark:text-primary-400 mb-4">{interest.icon}</div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                   {interest.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300">{interest.description}</p>
+                <p className="mt-2 text-gray-600 dark:text-gray-300">{interest.description}</p>
               </div>
             ))}
           </div>
@@ -109,17 +108,17 @@ export default function About() {
             {skills.map((skillGroup) => (
               <div
                 key={skillGroup.category}
-                className="project-card"
+                className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transform transition-transform duration-300"
               >
-                <div className="text-secondary-color mb-4">{skillGroup.icon}</div>
-                <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
+                <div className="text-primary-500 dark:text-primary-400 mb-4">{skillGroup.icon}</div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                   {skillGroup.category}
                 </h3>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mt-4">
                   {skillGroup.techs.map((tech) => (
                     <span
                       key={tech}
-                      className="project-tech-badge"
+                      className="bg-primary-500 text-white px-3 py-1 rounded-full text-sm"
                     >
                       {tech}
                     </span>

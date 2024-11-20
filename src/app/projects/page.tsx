@@ -152,7 +152,7 @@ const ProjectCard: React.FC<Project> = ({
               onClick={() => setActiveTab(tab as typeof activeTab)}
               className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${
                 activeTab === tab
-                  ? 'bg-gradient-to-r from-primary-500 to-secondary-500 text-white'
+                  ? 'bg-primary-500 text-white'  // Solid background color for the active tab
                   : 'text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700'
               }`}
             >
@@ -160,6 +160,7 @@ const ProjectCard: React.FC<Project> = ({
             </button>
           ))}
         </div>
+
 
         <div className="mb-6 min-h-[200px]">
           {activeTab === 'overview' && (
@@ -206,7 +207,6 @@ const ProjectCard: React.FC<Project> = ({
 export default function ProjectsPage() {
   useParallax();
 
-  // Your projects data here...
   const projects: Project[] = [
     {
       title: "Voice Authentication Mechanism for Secure Voice Calls",
@@ -243,7 +243,7 @@ export default function ProjectsPage() {
         "Docker",
         "FastAPI"
       ],
-      githubLink: "https://github.com/yourusername/voice-auth-mechanism",
+      githubLink: "https://github.com/milesherrman/seniorproject",
       liveLink: null,
       imageUrl: "/api/placeholder/800/400"
     },
@@ -282,8 +282,8 @@ export default function ProjectsPage() {
         "Vercel",
         "shadcn/ui"
       ],
-      githubLink: "https://github.com/yourusername/portfolio",
-      liveLink: "https://your-portfolio-url.com",
+      githubLink: "https://github.com/milesherrman/portfoliowebsite",
+      liveLink: "https://milesherrman.com",
       imageUrl: "/api/placeholder/800/400"
     }
   ];
