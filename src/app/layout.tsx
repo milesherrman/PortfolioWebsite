@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Navigation from '@/app/navigation/page'
 import Footer from '@/app/footer/page'
+import AnimatedBackground from '@/components/background';
+
 
 
 export default function RootLayout({
@@ -14,6 +16,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Navigation />
+        <AnimatedBackground 
+        count={60} 
+        gradientFrom="blue-50" 
+        gradientTo="blue-300" 
+        />
         <main>{children}</main>
         <Footer />
       </body>

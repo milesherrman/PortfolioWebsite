@@ -1,43 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { Send, Mail } from 'lucide-react';
-import { Alert, AlertDescription } from '@/components/ui/alert';
 
-// Reuse the background elements generation from the projects page
-const generateBackgroundElements = (count) => {
-  return Array.from({ length: count }, (_, i) => ({
-    id: i,
-    left: (i * 73) % 100,
-    top: (i * 47) % 100,
-    width: 50 + ((i * 83) % 100),
-    height: 50 + ((i * 83) % 100),
-    animationDelay: (i * 0.1) % 5,
-    animationDuration: 5 + ((i * 89) % 10)
-  }));
-};
-
-const backgroundElements = generateBackgroundElements(50);
-
-const AnimatedBackground = () => (
-  <div className="fixed inset-0 -z-10 overflow-hidden">
-    <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-      {backgroundElements.map((element) => (
-        <div
-          key={element.id}
-          className="absolute rounded-full bg-primary-500/10 animate-pulse"
-          style={{
-            left: `${element.left}%`,
-            top: `${element.top}%`,
-            width: `${element.width}px`,
-            height: `${element.height}px`,
-            animationDelay: `${element.animationDelay}s`,
-            animationDuration: `${element.animationDuration}s`,
-          }}
-        />
-      ))}
-    </div>
-  </div>
-);
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -109,7 +73,6 @@ const ContactPage = () => {
 
   return (
     <>
-      <AnimatedBackground />
       <div className="min-h-screen flex flex-col items-center justify-center p-4">
         <div className="w-full max-w-2xl">
           {/* Header section */}

@@ -3,40 +3,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Code2, Network, Rocket, Users, Coffee, Brain } from "lucide-react";
 
-const generateBackgroundElements = (count) => {
-  return Array.from({ length: count }, (_, i) => ({
-    id: i,
-    left: (i * 73) % 100,
-    top: (i * 47) % 100,
-    width: 50 + ((i * 83) % 100),
-    height: 50 + ((i * 83) % 100),
-    animationDelay: (i * 0.1) % 5,
-    animationDuration: 5 + ((i * 89) % 10)
-  }));
-};
-
-const backgroundElements = generateBackgroundElements(50);
-
-const AnimatedBackground = () => (
-  <div className="fixed inset-0 -z-10 overflow-hidden">
-    <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-      {backgroundElements.map((element) => (
-        <div
-          key={element.id}
-          className="absolute rounded-full bg-primary-500/10 animate-pulse"
-          style={{
-            left: `${element.left}%`,
-            top: `${element.top}%`,
-            width: `${element.width}px`,
-            height: `${element.height}px`,
-            animationDelay: `${element.animationDelay}s`,
-            animationDuration: `${element.animationDuration}s`,
-          }}
-        />
-      ))}
-    </div>
-  </div>
-);
 
 export default function About() {
   const [activeTab, setActiveTab] = useState("personal");
@@ -79,12 +45,11 @@ export default function About() {
 
   return (
     <>
-      <AnimatedBackground/>
         {/* Hero Section */}
         <div className="container-wrapper flex flex-col md:flex-row items-center gap-12 py-16">
           <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-primary-500 dark:border-primary-400">
             <Image
-              src="/api/placeholder/256/256"
+              src="/images/grad.JPG"
               alt="Profile"
               layout="fill"
               objectFit="cover"
@@ -106,22 +71,22 @@ export default function About() {
             </h1>
 
             <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-              Hi, I'm Miles Herrman, a recent Computer Science graduate with a knack for solving 
+              Hi, I'm Miles Herrman, a recent Computer Science graduate with a passion for solving 
               complex problems and a love for connecting with others. My time at Cal Poly was 
               unforgettable—balancing rigorous coursework, hands-on projects, and meaningful 
               internships prepared me to tackle real-world challenges.
             </p>
 
             <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-              When I’m not diving into code or cybersecurity frameworks, you’ll find me embracing 
-              the outdoors. Whether it’s running, snowboarding, biking, climbing, or jamming on my 
+              When I’m not working on projects or reading up on cybersecurity news, you’ll find me embracing 
+              the outdoors. Whether it’s running, snowboarding, biking, climbing, or practicing 
               guitar, I’m always seeking new adventures and creative outlets. I’m excited to take 
               what I’ve learned from my studies and work experiences and apply it to practical, 
               impactful solutions.
             </p>
 
             <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-              If you're looking for someone who combines technical expertise with a passion for 
+              If you're looking for someone who combines technical expertise with enthusiasm for 
               exploration and teamwork, let’s connect!
             </p>
 

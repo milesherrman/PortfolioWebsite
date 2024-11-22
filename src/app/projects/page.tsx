@@ -2,85 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { Github, ExternalLink, Mouse, ChevronDown } from 'lucide-react';
 
-
-// Enhanced background element generation with more animation parameters
-const generateBackgroundElements = (count: number) => {
-  return Array.from({ length: count }, (_, i) => ({
-    id: i,
-    left: (i * 73) % 100,
-    top: (i * 47) % 100,
-    width: 50 + ((i * 83) % 100),
-    height: 50 + ((i * 83) % 100),
-    animationDelay: (i * 0.1) % 5,
-    animationDuration: 5 + ((i * 89) % 10),
-    moveX: 6 + ((i * 67) % 20), // Random movement range for X
-    moveY: 6 + ((i * 53) % 20), // Random movement range for Y
-    scale: 0.5 + ((i * 31) % 3) / 10, // Random scale factor
-  }));
-};
-
-const backgroundElements = generateBackgroundElements(50);
-
-const AnimatedBackground = () => (
-  <div className="fixed inset-0 -z-10 overflow-hidden">
-    <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-      <style>{`
-        @keyframes float {
-          0% {
-            transform: translate(0, 0) scale(1);
-          }
-          25% {
-            transform: translate(var(--moveX), var(--moveY)) scale(var(--scale));
-          }
-          50% {
-            transform: translate(var(--moveX), calc(var(--moveY) * -1)) scale(1);
-          }
-          75% {
-            transform: translate(calc(var(--moveX) * -1), var(--moveY)) scale(var(--scale));
-          }
-          100% {
-            transform: translate(0, 0) scale(1);
-          }
-        }
-        
-        .floating-blob {
-          animation: float var(--duration) ease-in-out infinite;
-          animation-delay: var(--delay);
-        }
-        
-        .floating-blob::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          border-radius: 50%;
-          background: inherit;
-          filter: blur(5px);
-          opacity: 0.7;
-        }
-      `}</style>
-      
-      {backgroundElements.map((element) => (
-        <div
-          key={element.id}
-          className="absolute rounded-full bg-primary-500/10 floating-blob"
-          style={{
-            left: `${element.left}%`,
-            top: `${element.top}%`,
-            width: `${element.width}px`,
-            height: `${element.height}px`,
-            '--moveX': `${element.moveX}px`,
-            '--moveY': `${element.moveY}px`,
-            '--scale': element.scale,
-            '--delay': `${element.animationDelay}s`,
-            '--duration': `${element.animationDuration}s`,
-          } as React.CSSProperties}
-        />
-      ))}
-    </div>
-  </div>
-);
-
-
 // Rest of your components remain the same...
 const useParallax = () => {
   useEffect(() => {
@@ -187,7 +108,7 @@ const ProjectCard: React.FC<Project> = ({
           className="w-full h-64 object-cover transform transition-transform duration-700 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        <div className="absolute top-4 right-4 flex space-x-2 transform translate-y-[-100%] group-hover:translate-y-0 transition-transform duration-300">
+        <div className="absolute top-4 right-4 flex space-x-2 transition-transform duration-300">
           {githubLink && (
             <a
               href={githubLink}
@@ -209,6 +130,7 @@ const ProjectCard: React.FC<Project> = ({
             </a>
           )}
         </div>
+
       </div>
 
       <div className="p-6">
@@ -316,7 +238,7 @@ export default function ProjectsPage() {
       ],
       githubLink: "https://github.com/milesherrman/seniorproject",
       liveLink: null,
-      imageUrl: "/api/placeholder/800/400"
+      imageUrl: "/images/wav.png"
     },
     {
       title: "Modern Portfolio Website",
@@ -355,13 +277,13 @@ export default function ProjectsPage() {
       ],
       githubLink: "https://github.com/milesherrman/portfoliowebsite",
       liveLink: "https://milesherrman.com",
-      imageUrl: "/api/placeholder/800/400"
+      imageUrl: "/images/react.png"
     }
   ];
 
   return (
     <>
-      <AnimatedBackground />
+
       <Hero />
       <div className="relative min-h-screen py-16">
         <div className="max-w-6xl mx-auto px-4">
