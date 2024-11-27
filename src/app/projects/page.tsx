@@ -72,7 +72,7 @@ const Hero = () => {
 interface Project {
   title: string;
   overview: string;
-  technicalDetails: string;
+  technicalDetails: any;
   keyTakeaways: string[];
   futureWork: string;
   technologies: string[];
@@ -204,37 +204,49 @@ export default function ProjectsPage() {
     {
       title: "Voice Authentication Mechanism for Secure Voice Calls",
       overview: "Developed an innovative voice authentication system using deep learning to enhance security in voice calls. This Cal Poly senior project implements passive liveness detection through a multi-model approach, utilizing state-of-the-art Wav2Vec models to authenticate speakers and detect spoofed audio in real-time.",
-      technicalDetails: `Technical implementation centered around two fine-tuned Wav2Vec2 models:
-  
-  1. Spoof Detection Model:
-  - Fine-tuned Facebook's Wav2Vec2 architecture for binary classification
-  - Implemented MFCC and spectrogram feature extraction
-  - Optimized for real-time processing of audio streams
-  - Achieved high accuracy in detecting synthetic and replayed audio
-  
-  2. Speaker Identification Model:
-  - Adapted Wav2Vec2 for speaker verification
-  - Implemented transfer learning and domain adaptation techniques
-  - Created robust feature extraction pipeline
-  - Enhanced performance through custom loss functions
-  
-  The system processes audio through both models simultaneously, providing a dual-layer authentication mechanism that significantly improves security compared to single-model approaches.`,
+      technicalDetails: (
+        <>
+          <p>Technical implementation centered around two fine-tuned Wav2Vec2 models:</p>
+          <div className="mt-2">
+            <h3 className="font-semibold">1. Spoof Detection Model:</h3>
+            <ul className="list-disc list-inside ml-4 space-y-1">
+              <li>Fine-tuned Facebook's Wav2Vec2 architecture for binary classification</li>
+              <li>Implemented MFCC and spectrogram feature extraction</li>
+              <li>Optimized for real-time processing of audio streams</li>
+              <li>Achieved high accuracy in detecting synthetic and replayed audio</li>
+            </ul>
+          </div>
+          <div className="mt-2">
+            <h3 className="font-semibold">2. Speaker Identification Model:</h3>
+            <ul className="list-disc list-inside ml-4 space-y-1">
+              <li>Adapted Wav2Vec2 for speaker verification</li>
+              <li>Implemented transfer learning and domain adaptation techniques</li>
+              <li>Created robust feature extraction pipeline</li>
+              <li>Enhanced performance through custom loss functions</li>
+            </ul>
+          </div>
+          <p className="mt-4">
+            The system processes audio through both models simultaneously, providing a dual-layer
+            authentication mechanism that significantly improves security compared to single-model
+            approaches.
+          </p>
+        </>
+      ),
       keyTakeaways: [
         "Successfully implemented dual-model voice authentication system",
         "Achieved high accuracy in both spoof detection and speaker verification",
-        "Developed real-time processing capabilities for live voice calls",
         "Created a scalable architecture suitable for production deployment",
         "Demonstrated practical application of state-of-the-art speech processing models"
       ],
       futureWork: "Future development will focus on three key areas: model optimization for reduced latency, integration of multi-modal fusion techniques incorporating visual data, and deployment optimization for real-world applications. Planning to explore adversarial training methods to enhance robustness against novel spoofing attacks and implement edge deployment capabilities for improved privacy.",
       technologies: [
-        "Python",
-        "PyTorch",
         "Wav2Vec2",
-        "Signal Processing",
-        "TensorFlow",
-        "Docker",
-        "FastAPI"
+        "Hugging Face",
+        "TensorBoard",
+        "PyTorch",
+        "AWS SageMaker",
+        "AWS S3",
+        "AWS Cloudwatch",
       ],
       githubLink: "https://github.com/milesherrman/seniorproject",
       liveLink: "/snrproj",
