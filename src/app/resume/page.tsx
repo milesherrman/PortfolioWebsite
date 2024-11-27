@@ -1,10 +1,16 @@
 "use client"
-import React, { useState } from 'react';
-import { Download, Mail, Linkedin, Github, MapPin, GraduationCap, Briefcase, Award, BookOpen } from 'lucide-react';
+import React, { useState, ReactNode } from 'react';
+import { Download, Mail, Linkedin, Github, MapPin, GraduationCap, Briefcase, Award, BookOpen, LucideIcon } from 'lucide-react';
 
 
 
-const ResumeSection = ({ title, icon: Icon, children }) => (
+interface ResumeSectionProps {
+  title: string;
+  icon: LucideIcon;
+  children: ReactNode;
+}
+
+const ResumeSection: React.FC<ResumeSectionProps> = ({ title, icon: Icon, children }) => (
   <div className="mb-8">
     <div className="flex items-center gap-2 mb-4">
       <Icon className="text-primary-500" size={24} />
@@ -14,7 +20,21 @@ const ResumeSection = ({ title, icon: Icon, children }) => (
   </div>
 );
 
-const ExperienceCard = ({ role, company, date, location, description }) => (
+interface ExperienceCardProps {
+  role: string;
+  company: string;
+  date: string;
+  location: string;
+  description: string[];
+}
+
+const ExperienceCard: React.FC<ExperienceCardProps> = ({ 
+  role, 
+  company, 
+  date, 
+  location, 
+  description 
+}) => (
   <div className="mb-4 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6">
     <div className="flex justify-between items-start mb-2 flex-wrap gap-2">
       <div>
@@ -37,7 +57,13 @@ const ExperienceCard = ({ role, company, date, location, description }) => (
   </div>
 );
 
-const SkillTag = ({ skill }) => (
+interface SkillTagProps {
+  skill: string;
+}
+
+const SkillTag: React.FC<SkillTagProps> = ({ 
+  skill
+}) => (
   <span className="bg-gradient-to-r from-primary-500/10 to-secondary-500/10 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm transform transition-transform duration-300 hover:scale-110">
     {skill}
   </span>
@@ -46,7 +72,7 @@ const SkillTag = ({ skill }) => (
 export default function ResumePage() {
   const handleDownload = () => {
     // Replace with actual PDF download logic
-    window.open('/MilesResumeNov2024.pdf', '_blank');
+    window.open('pdf/MilesResumePublic.pdf', '_blank');
   };
 
   return (
@@ -91,7 +117,7 @@ export default function ResumePage() {
               className="bg-primary-500 text-white px-6 py-3 rounded-lg flex items-center gap-2 mx-auto hover:bg-primary-600 transition-colors"
             >
               <Download size={20} />
-              Download Resume
+              View Resume
             </button>
           </div>
 

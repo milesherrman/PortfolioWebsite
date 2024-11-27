@@ -44,32 +44,39 @@ export default function About() {
   ];
 
   return (
-    <>
+    <div>
         {/* Hero Section */}
-        <div className="container-wrapper flex flex-col md:flex-row items-center gap-12 py-16">
+        <div className="container-wrapper flex flex-col md:flex-row items-center justify-center gap-12 py-16">
           <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-primary-500 dark:border-primary-400">
             <Image
               src="/images/grad.JPG"
               alt="Profile"
-              layout="fill"
-              objectFit="cover"
-              className="rounded-full"
+              fill // Ensures the image fills the container completely
+              style={{
+                objectFit: "cover",
+                objectPosition: "center", // Ensures the image is centered within the circle
+              }}
             />
           </div>
 
-          <div className="flex-1">
-          <h1 className="mt-16 text-5xl md:text-7xl font-bold tracking-tight mb-4">
-              <span className="bg-gradient-to-r from-primary-500 via-primary-400 to-secondary-500 dark:from-primary-300 dark:via-primary-200 dark:to-secondary-300 bg-clip-text text-transparent animate-gradient-x"
-                style={{
-                  animationDuration: '6s',
-                  backgroundSize: '150%',
-                }}>
-                About Me
-              </span>
 
-              <span className="text-primary-500 dark:text-primary-300 animate-pulse" style={{ animationDuration: '2s' }}>.</span>
-            </h1>
 
+
+
+        <div className="flex-1 mx-12 mb-4">
+          <h1 className="mt-16 text-5xl md:text-7xl font-bold tracking-tight mb-4 ">
+            <span className="bg-gradient-to-r from-primary-500 via-primary-400 to-secondary-500 dark:from-primary-300 dark:via-primary-200 dark:to-secondary-300 bg-clip-text text-transparent animate-gradient-x"
+              style={{
+                animationDuration: '6s',
+                backgroundSize: '150%',
+              }}>
+              About Me
+            </span>
+
+            <span className="text-primary-500 dark:text-primary-300 animate-pulse" style={{ animationDuration: '2s' }}>.</span>
+          </h1>
+          
+          <div>
             <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
               Hi, I'm Miles Herrman, a recent Computer Science graduate with a passion for solving 
               complex problems and a love for connecting with others. My time at Cal Poly was 
@@ -78,8 +85,8 @@ export default function About() {
             </p>
 
             <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-              When I’m not working on projects or reading up on cybersecurity news, you’ll find me embracing 
-              the outdoors. Whether it’s running, snowboarding, biking, climbing, or practicing 
+              When I’m not working on a project, you’ll find me embracing 
+              the outdoors. Whether it’s running, snowboarding, cycling, climbing, or practicing 
               guitar, I’m always seeking new adventures and creative outlets. I’m excited to take 
               what I’ve learned from my studies and work experiences and apply it to practical, 
               impactful solutions.
@@ -89,12 +96,13 @@ export default function About() {
               If you're looking for someone who combines technical expertise with enthusiasm for 
               exploration and teamwork, let’s connect!
             </p>
-
           </div>
+          </div>
+
         </div>
 
         {/* Tab Navigation */}
-        <div className="container-wrapper flex justify-center mb-12">
+        <div className="container-wrapper flex justify-center mb-4">
           <div className="flex space-x-4 bg-gray-100 dark:bg-gray-800 p-1 rounded-lg">
             {["personal", "technical"].map((tab) => (
               <button
@@ -156,6 +164,6 @@ export default function About() {
             </div>
           )}
         </div>
-    </>
+    </div>
   );
 }

@@ -12,7 +12,7 @@ const FloatingIcon = ({ icon: Icon, delay, x, y }: { icon: any, delay: number, x
       top: `${y}%`,
     }}
   >
-    <Icon size={24} />
+    <Icon size={48} />
   </div>
 );
 
