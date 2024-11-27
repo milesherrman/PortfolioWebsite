@@ -45,8 +45,8 @@ const Hero = () => {
             className={`bg-gradient-to-r from-primary-500 via-primary-400 to-secondary-500 dark:from-primary-300 dark:via-primary-200 dark:to-secondary-300 
                         bg-clip-text text-transparent animate-gradient-x`}
             style={{
-              animationDuration: '6s', // Slower animation
-              backgroundSize: '150%',  // Less extreme fade
+              animationDuration: '6s', 
+              backgroundSize: '150%',  
             }}
           >
             Projects
@@ -59,8 +59,8 @@ const Hero = () => {
         <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8">
           Software Engineer & Creative Developer
         </p>
-        <div className="flex justify-center space-x-4 mb-12">
-          <Mouse className="animate-bounce" size={24} />
+        <div className="flex justify-center space-x-4 mt-12 mb-12">
+          <Mouse className="animate-bounce" size={38} />
           <ChevronDown className="animate-bounce" size={24} />
         </div>
       </div>
@@ -237,8 +237,8 @@ export default function ProjectsPage() {
         "FastAPI"
       ],
       githubLink: "https://github.com/milesherrman/seniorproject",
-      liveLink: null,
-      imageUrl: "/images/wav.png"
+      liveLink: "/snrproj",
+      imageUrl: "/images/hf.png"
     },
     {
       title: "Modern Portfolio Website",

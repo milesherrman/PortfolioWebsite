@@ -114,7 +114,7 @@ export default function About() {
 
 
         {/* Content Sections */}
-        <div className="container-wrapper grid gap-8">
+        <div className="container-wrapper grid gap-8 mb-20">
           {activeTab === "personal" ? (
             <div className="grid md:grid-cols-3 gap-6">
               {interests.map((interest) => (
@@ -131,7 +131,7 @@ export default function About() {
               ))}
             </div>
           ) : (
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-6 ">
               {skills.map((skillGroup) => (
                 <div
                   key={skillGroup.category}
