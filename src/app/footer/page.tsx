@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function Footer() {
     // Social links - could be moved to a config file
     const socialLinks = [
@@ -35,10 +37,12 @@ export default function Footer() {
               <ul className="space-y-3">
                 {footerLinks.map((link) => (
                   <li key={link.name}>
-                    
-            
+                    <Link 
+                      href={link.href} 
+                      className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                    >
                       {link.name}
-                
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -52,10 +56,14 @@ export default function Footer() {
               <ul className="space-y-3">
                 {socialLinks.map((link) => (
                   <li key={link.name}>
-                    
-                    
+                    <a 
+                      href={link.href} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                    >
                       {link.name}
-               
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -69,12 +77,18 @@ export default function Footer() {
                 © {new Date().getFullYear()} Miles Herrman. All rights reserved.
               </p>
               <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-300">
-                <a href="#" className="hover:text-gray-900 dark:hover:text-white transition-colors">
+                <Link 
+                  href="/privacy" 
+                  className="hover:text-gray-900 dark:hover:text-white transition-colors"
+                >
                   Privacy Policy
-                </a>
-                <a href="#" className="hover:text-gray-900 dark:hover:text-white transition-colors">
+                </Link>
+                <Link 
+                  href="/terms" 
+                  className="hover:text-gray-900 dark:hover:text-white transition-colors"
+                >
                   Terms of Service
-                </a>
+                </Link>
               </div>
             </div>
           </div>
