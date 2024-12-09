@@ -66,28 +66,28 @@ const ContactPage: React.FC = () => {
     }
 
     try {
-      // Option 1: Submit to a serverless function (e.g., Vercel, Netlify, AWS Lambda)
-      const response = await fetch('/api/submit-contact', {
+      // Formspree submission
+      const response = await fetch('https://formspree.io/f/mnnqydvb', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData)
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to submit form');
+      if (response.ok) {
+        // Successful submission
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', message: '' });
+        
+        // Reset submission status after 5 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 5000);
+      } else {
+        throw new Error('Submission failed');
       }
-
-      // Successful submission
-      setIsSubmitted(true);
-      setFormData({ name: '', email: '', message: '' });
-      
-      // Reset submission status after 5 seconds
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 5000);
-
     } catch (error) {
       // Handle submission errors
       setSubmissionError('Failed to send message. Please try again.');
@@ -146,7 +146,12 @@ const ContactPage: React.FC = () => {
           )}
 
           {/* Form with comprehensive error handling */}
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form 
+            action="https://formspree.io/f/mnnqydvb" 
+            method="POST"
+            onSubmit={handleSubmit} 
+            className="space-y-6"
+          >
             {/* Name Input */}
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
