@@ -9,18 +9,18 @@ export default function About() {
 
   const skills = [
     {
-      category: "Frontend",
-      techs: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+      category: "Web Development",
+      techs: ["React", "Next.js", "MySQL", "Tailwind CSS"],
       icon: <Code2 className="w-6 h-6" />,
     },
     {
-      category: "Backend",
-      techs: ["Node.js", "Express", "MySQL", "Prisma"],
+      category: "Programming Languages",
+      techs: ["Python", "SQL", "R", "Java", "C++"],
       icon: <Network className="w-6 h-6" />,
     },
     {
-      category: "Tools",
-      techs: ["Git", "VS Code", "Docker", "AWS"],
+      category: "Tools & Platforms",
+      techs: ["Git", "VS Code", "Cloudflare", "AWS", "Hugging Face", "NetSuite"],
       icon: <Rocket className="w-6 h-6" />,
     },
   ];

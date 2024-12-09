@@ -12,6 +12,7 @@ export default function Footer() {
       { name: 'Projects', href: '/projects' },
       { name: 'About', href: '/about' },
       { name: 'Contact', href: '/contact' },
+      { name: 'Resume', href: '/resume' },
     ]
   
     return (
@@ -24,8 +25,7 @@ export default function Footer() {
                 Miles Herrman
               </h2>
               <p className="text-gray-600 dark:text-gray-300 max-w-md">
-                Full-stack developer passionate about creating modern web applications
-                and solving complex problems.
+                Computer Science by degree, people person by nature, just looking for creative ways to make an impact.
               </p>
             </div>
   
