@@ -195,7 +195,7 @@ export default function ResumePage() {
             </div>
           </ResumeSection>
 
-          {/* Skills Section */}
+          {/* Skills Section
           <ResumeSection title="Technical Skills" icon={BookOpen}>
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
               <div className="flex flex-wrap gap-2">
@@ -208,7 +208,7 @@ export default function ResumePage() {
                 ))}
               </div>
             </div>
-          </ResumeSection>
+          </ResumeSection> */}
 
           
         </div>
