@@ -169,15 +169,25 @@ const ProjectCard: React.FC<Project> = ({
           )}
 
           {activeTab === 'technical' && (
-            <p className="text-gray-600 dark:text-gray-300 animate-fadeIn">
-              {technicalDetails}
-            </p>
+            <p 
+              className="text-gray-600 dark:text-gray-300 animate-fadeIn whitespace-pre-wrap"
+              dangerouslySetInnerHTML={{
+                __html: technicalDetails
+                  .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+                  .replace(/\n/g, '<br/>')
+              }}
+            />
           )}
 
           {activeTab === 'future' && (
-            <p className="text-gray-600 dark:text-gray-300 animate-fadeIn">
-              {futureWork}
-            </p>
+             <p 
+             className="text-gray-600 dark:text-gray-300 animate-fadeIn whitespace-pre-wrap"
+             dangerouslySetInnerHTML={{
+               __html: futureWork
+                 .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+                 .replace(/\n/g, '<br/>')
+             }}
+           />
           )}
         </div>
 
@@ -206,13 +216,13 @@ export default function ProjectsPage() {
       overview: "Developed an innovative voice authentication system using deep learning to enhance security in voice calls. This Cal Poly senior project implements passive liveness detection through a multi-model approach, utilizing state-of-the-art Wav2Vec models to authenticate speakers and detect spoofed audio in real-time.",
       technicalDetails: `Technical implementation centered around two fine-tuned Wav2Vec2 models:
 
-      1. Spoof Detection Model:
+      **1. Spoof Detection Model:**
          - Fine-tuned Facebook's Wav2Vec2 architecture for binary classification
          - Implemented MFCC and spectrogram feature extraction
          - Optimized for real-time processing of audio streams
          - Achieved high accuracy in detecting synthetic and replayed audio
       
-      2. Speaker Identification Model:
+      **2. Speaker Identification Model:**
          - Adapted Wav2Vec2 for speaker verification
          - Implemented transfer learning and domain adaptation techniques
          - Created robust feature extraction pipeline
@@ -226,7 +236,14 @@ export default function ProjectsPage() {
         "Created a scalable architecture suitable for production deployment",
         "Demonstrated practical application of state-of-the-art speech processing models"
       ],
-      futureWork: "Future development will focus on three key areas: model optimization for reduced latency, integration of multi-modal fusion techniques incorporating visual data, and deployment optimization for real-world applications. Planning to explore adversarial training methods to enhance robustness against novel spoofing attacks and implement edge deployment capabilities for improved privacy.",
+      futureWork: `This project lays the groundwork for advancing real-time voice authentication. Key areas for improvement include:
+
+      **Speaker Identification with Limited Data:** Reducing the need for extensive data per individual by exploring techniques like transfer learning, data augmentation, or few-shot learning to make speaker identification more practical and efficient.
+      
+      **Adapting to Evolving Threats:** Establishing a continuous learning framework to update the model with diverse datasets, including new spoofing techniques and accents, ensuring robust and adaptable performance.
+      
+      These efforts aim to enhance the system’s scalability, resilience, and usability in real-world applications.`
+      ,
       technologies: [
         "Wav2Vec2",
         "Hugging Face",
@@ -237,7 +254,6 @@ export default function ProjectsPage() {
         "AWS Cloudwatch",
       ],
       githubLink: "https://github.com/milesherrman/seniorproject",
-      liveLink: "/snrproj",
       imageUrl: "/images/hf.png"
     },
     {
@@ -245,13 +261,13 @@ export default function ProjectsPage() {
       overview: "Designed and developed a dynamic, interactive portfolio website using cutting-edge web technologies. This project serves as both a showcase of my work and a playground for experimenting with modern front-end development practices, featuring animated UI elements, responsive design, and seamless dark mode implementation.",
       technicalDetails: `Built with a modern tech stack emphasizing developer experience and performance:
   
-  1. Core Technologies:
+  **1. Core Technologies:**
   - Next.js 14 with App Router for optimized routing and server components
   - TypeScript for type safety and improved development experience
   - Tailwind CSS for utility-first styling and rapid prototyping
   - React hooks for state management and component logic
   
-  2. Enhanced Features:
+  **2. Enhanced Features:**
   - Custom animations using CSS transforms and Tailwind transitions
   - Responsive design with mobile-first approach
   - Dark mode implementation with system preference detection
@@ -265,14 +281,13 @@ export default function ProjectsPage() {
         "Achieved optimal performance scores in Lighthouse",
         "Applied TypeScript for enhanced code quality"
       ],
-      futureWork: "Planning to expand the website with additional features including a blog section using MDX for technical writing, integration with GitHub API to automatically showcase latest projects, and implementation of a custom CMS for easier content management. Will also add interactive 3D elements using Three.js and improve accessibility features.",
+      futureWork: "Future enhancements for the website include developing a custom backend infrastructure to securely store and manage contact form submissions, ensuring data integrity and privacy. Additionally, plans involve leveraging Three.js to integrate interactive 3D elements, enhancing visual engagement and creating a more immersive user experience.",
       technologies: [
         "Next.js",
         "TypeScript",
         "React",
         "Tailwind CSS",
         "Lucide Icons",
-        "Vercel",
         "shadcn/ui"
       ],
       githubLink: "https://github.com/milesherrman/portfoliowebsite",
