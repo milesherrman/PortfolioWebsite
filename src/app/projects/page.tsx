@@ -1,6 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import { Github, ExternalLink, Mouse, ChevronDown } from 'lucide-react';
+import Image from 'next/image';
 
 // Rest of your components remain the same...
 const useParallax = () => {
@@ -93,18 +94,19 @@ const ProjectCard: React.FC<Project> = ({
   imageUrl
 }) => {
   const [activeTab, setActiveTab] = useState<'overview' | 'technical' | 'future'>('overview');
-  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
       className="group bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-[1.02]"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+
     >
       <div className="relative overflow-hidden">
-        <img
+        <Image
           src={imageUrl}
           alt={`${title} project screenshot`}
+          layout="responsive"
+          width={16} // Aspect ratio width
+          height={9} // Aspect ratio height
           className="w-full h-64 object-cover transform transition-transform duration-700 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 import Navigation from '@/app/navigation/page'
 import Footer from '@/app/footer/page'
@@ -29,7 +28,7 @@ export default function RootLayout({
 }
 
 // Initialize the Inter font
-const inter = Inter({ subsets: ['latin'] })
+// const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Miles Herrman Portfolio',

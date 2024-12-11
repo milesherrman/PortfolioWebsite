@@ -122,7 +122,7 @@ const ContactPage: React.FC = () => {
             </span>
             <span className="text-primary-500 dark:text-primary-300">.</span>
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300">Let's start a conversation</p>
+          <p className="text-xl text-gray-600 dark:text-gray-300">Let&rsquo;s start a conversation</p>
         </div>
 
         {/* Form section */}
@@ -131,7 +131,7 @@ const ContactPage: React.FC = () => {
           {isSubmitted && (
             <div className="mb-6 p-4 bg-green-100 dark:bg-green-900/30 border border-green-500 rounded-lg">
               <p className="text-green-700 dark:text-green-300">
-                Thank you for your message! I'll get back to you soon.
+                Thank you for your message! I&rsquo;ll get back to you soon.
               </p>
             </div>
           )}

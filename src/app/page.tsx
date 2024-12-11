@@ -1,9 +1,9 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Code, Laptop, Brain, Mail, Github, Linkedin, Terminal } from 'lucide-react';
+import { ArrowRight, Code, Laptop, Brain, Github, Linkedin, Terminal } from 'lucide-react';
 
-const FloatingIcon = ({ icon: Icon, delay, x, y }: { icon: any, delay: number, x: number, y: number }) => (
+const FloatingIcon = ({ icon: Icon, delay, x, y }: { icon: React.ElementType, delay: number, x: number, y: number }) => (
   <div 
     className="absolute hidden md:flex items-center justify-center w-10 h-10 text-primary-500/50 dark:text-primary-400/50"
     style={{

@@ -10,7 +10,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     res.setHeader('Content-Type', 'application/pdf')
     res.setHeader('Content-Disposition', 'inline; filename=SeniorProject.pdf')
     res.send(file)
-  } catch (error) {
+  } catch {
     res.status(404).json({ message: 'PDF not found' })
   }
 }

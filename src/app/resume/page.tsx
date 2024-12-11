@@ -1,6 +1,6 @@
 "use client"
-import React, { useState, ReactNode } from 'react';
-import { Download, Mail, Linkedin, Github, MapPin, GraduationCap, Briefcase, Award, BookOpen, LucideIcon } from 'lucide-react';
+import React, { ReactNode } from 'react';
+import { Download, Linkedin, Github, MapPin, GraduationCap, Briefcase, Award, LucideIcon } from 'lucide-react';
 
 
 
@@ -57,17 +57,17 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
   </div>
 );
 
-interface SkillTagProps {
-  skill: string;
-}
+// interface SkillTagProps {
+//   skill: string;
+// }
 
-const SkillTag: React.FC<SkillTagProps> = ({ 
-  skill
-}) => (
-  <span className="bg-gradient-to-r from-primary-500/10 to-secondary-500/10 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm transform transition-transform duration-300 hover:scale-110">
-    {skill}
-  </span>
-);
+// const SkillTag: React.FC<SkillTagProps> = ({ 
+//   skill
+// }) => (
+//   <span className="bg-gradient-to-r from-primary-500/10 to-secondary-500/10 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm transform transition-transform duration-300 hover:scale-110">
+//     {skill}
+//   </span>
+// );
 
 export default function ResumePage() {
   const handleDownload = () => {
@@ -136,7 +136,7 @@ export default function ResumePage() {
               </div>
               <ul className="list-disc pl-5 text-gray-600 dark:text-gray-300 space-y-1">
                 <li>Graduated Magna Cum Laude in just 3 years</li>
-                <li>Served as an Orientation Leader for Cal Poly's Week of Welcome</li>
+                <li>Served as an Orientation Leader for Cal Poly&rsquo;s Week of Welcome</li>
                 <li>Active member of the Distance Club</li>
               </ul>
             </div>

@@ -78,23 +78,23 @@ export default function About() {
           
           <div>
             <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-              Hi, I'm Miles Herrman, a recent Computer Science graduate with a passion for solving 
+              Hi, I&rsquo;m Miles Herrman, a recent Computer Science graduate with a passion for solving 
               complex problems and a love for connecting with others. My time at Cal Poly was 
               unforgettable—balancing rigorous coursework, hands-on projects, and meaningful 
               internships prepared me to tackle real-world challenges.
             </p>
 
             <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-              When I’m not working on a project, you’ll find me embracing 
-              the outdoors. Whether it’s running, snowboarding, cycling, climbing, or practicing 
-              guitar, I’m always seeking new adventures and creative outlets. I’m excited to take 
-              what I’ve learned from my studies and work experiences and apply it to practical, 
+              When I&rsquo;m not working on a project, you&rsquo;ll find me embracing 
+              the outdoors. Whether it&rsquo;s running, snowboarding, cycling, climbing, or practicing 
+              guitar, I&rsquo;m always seeking new adventures and creative outlets. I&rsquo;m excited to take 
+              what I&rsquo;ve learned from my studies and work experiences and apply it to practical, 
               impactful solutions.
             </p>
 
             <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-              If you're looking for someone who combines technical expertise with enthusiasm for 
-              exploration and teamwork, let’s connect!
+              If you&rsquo;re looking for someone who combines technical expertise with enthusiasm for 
+              exploration and teamwork, let&rsquo;s connect!
             </p>
           </div>
           </div>

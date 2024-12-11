@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react';
-import { Download, FileText, ArrowLeft, ArrowRight } from 'lucide-react';
+import { FileText, ArrowLeft, ArrowRight } from 'lucide-react';
 
 export default function SeniorProjectPage() {
   const [currentPage, setCurrentPage] = useState(1);
