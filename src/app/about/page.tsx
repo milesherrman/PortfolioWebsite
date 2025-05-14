@@ -49,7 +49,7 @@ export default function About() {
         <div className="container-wrapper flex flex-col md:flex-row items-center justify-center gap-12 py-16">
           <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-primary-500 dark:border-primary-400">
             <Image
-              src="/images/grad.JPG"
+              src="/images/grad.jpeg"
               alt="Profile"
               fill // Ensures the image fills the container completely
               style={{
