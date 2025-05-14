@@ -72,7 +72,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
 export default function ResumePage() {
   const handleDownload = () => {
     // Replace with actual PDF download logic
-    window.open('pdf/MilesResumePublic.pdf', '_blank');
+    window.open('pdf/MilesHerrman_CISSP_Public.pdf', '_blank');
   };
 
   return (
