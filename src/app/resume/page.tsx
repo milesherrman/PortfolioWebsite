@@ -213,6 +213,4 @@ export default function ResumePage() {
           
         </div>
       </div>
-    </>
-  );
-}
+    </
