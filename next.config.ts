@@ -8,4 +8,4 @@ const nextConfig = {
   },
 }
 
-expor
+export default nextConfig
